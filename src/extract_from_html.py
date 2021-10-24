@@ -3,7 +3,7 @@ import os
 from bs4 import BeautifulSoup
 from urllib import request
 now = datetime.now()
-years = range(1990,int(now.year))
+years = now.year
 
 def extract_movies_url(url):
     global image

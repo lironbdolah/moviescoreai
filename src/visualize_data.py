@@ -65,7 +65,7 @@ def display_data(data, accuracy):
     summarized_data = pd.merge(scores_mean, predicted_scores_mean, on="movies")
     summarized_data['Overall score'] = round(((summarized_data['scores'] + summarized_data['prediction']) / 2),2)
 
-    images_path = 'C:/Users/ADMIN/Documents/Ds/nlp/images'
+    images_path = 'assets'
     plot_bar(images_path, summarized_data) # barplot image
     score_summary = scores_summary(summarized_data) # p
     movie,image_url,top_review = topmovie(data,summarized_data) # h3 text

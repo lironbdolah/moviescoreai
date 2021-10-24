@@ -34,8 +34,8 @@ def clean_reviews(reviews):
 def compute_scores(result):
 
     result[:,0] *= 2
-    result[:,1] *= 6
-    result[:,2] *= 10
+    result[:,1] *= 5.5
+    result[:,2] *= 9
 
     return result.sum(axis=1)
 
@@ -62,7 +62,6 @@ if __name__ == "__main__":
     reviews_df['prediction'] = compute_scores(result)
     accuracy = compute_accuracy(result, reviews_df)
 
-    reviews_df.to_csv(path.join(dataset_path, 'result.csv'))
     display_data(reviews_df ,accuracy)
 
 

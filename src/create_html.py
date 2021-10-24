@@ -1,7 +1,7 @@
 from os import path,system
 
 def html(movies_summary,movie,image_url,top_review,images_path, summary_review, accuracy):
-    html_path = 'C:/Users/ADMIN/Documents/Ds/nlp/'
+    html_path = 'assets'
     barplot = path.join(images_path, 'barplot.png')
     file = open(path.join(html_path,"moviescoreai.html"), "w")
     file.write('''<!DOCTYPE html> 
