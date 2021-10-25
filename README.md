@@ -8,3 +8,5 @@
  <img alt="last commit" src=https://img.shields.io/github/last-commit/lironbdolah/moviescoreai>
 
 </p>
+
+This RNN based model predicts movies popularity based on users reviews and scores on Imdb.com and creates an HTML file with relevant statistics. <br />
