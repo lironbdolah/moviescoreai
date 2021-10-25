@@ -10,3 +10,12 @@
 </p>
 
 This RNN based model predicts movies popularity based on users reviews and scores on Imdb.com and creates an HTML file with relevant statistics. <br />
+
+
+**Features:**
+
+- Classifies user's reviews with an RNN model.
+- Trained on 40,000 movie reviews that were scraped from [imdb.com](https://www.imdb.com).
+- Exports an HTML file with statistics about recently published movies.
+- Generates a review for the top movie of the week.
+- Updates weekly according to [Imdb: movies in theaters](https://www.imdb.com/movies-in-theaters/?ref_=nv_mv_inth).
