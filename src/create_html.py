@@ -1,9 +1,8 @@
 from os import path,system
 
-def html(movies_summary,movie,image_url,top_review,images_path, summary_review, accuracy):
-    html_path = 'assets'
+def html(movies_summary,movie,image_url,top_review,images_path, summary_review, accuracy, name , output_path,start):
     barplot = path.join(images_path, 'barplot.png')
-    file = open(path.join(html_path,"moviescoreai.html"), "w")
+    file = open(path.join(output_path, name+".html"), "w")
     file.write('''<!DOCTYPE html> 
                     <html>    
                       <head>
@@ -120,5 +119,6 @@ def html(movies_summary,movie,image_url,top_review,images_path, summary_review, 
                       </body>
                     </html>''')
     file.close()
-    system("start " + path.join(html_path, 'moviescoreai.html'))
+    if start:
+        system("start " + path.join(output_path, 'moviescoreai.html'))
 

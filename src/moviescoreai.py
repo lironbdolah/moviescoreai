@@ -1,10 +1,12 @@
 from extract_from_html import *
+import tensorflow
 from tensorflow import keras
 import nltk
-from vizualize_data import display_data,compute_accuracy
+from visualize_data import display_data,compute_accuracy
 from os import path
 from nltk.stem.porter import PorterStemmer
 import pandas as pd
+import argparse
 stopwords = nltk.corpus.stopwords.words('english')
 english_words = set(nltk.corpus.words.words())
 
@@ -39,15 +41,10 @@ def compute_scores(result):
 
     return result.sum(axis=1)
 
-
-
-
-
-
-
-if __name__ == "__main__":
+def run(name='moviescoreai',output='run',
+                    start=False):
     dataset_path = 'src'
-    model = keras.models.load_model(path.join(dataset_path, "weights"))
+    model = tensorflow.saved_model.load(path.join(dataset_path, "weights"))
     print(model.summary())
 
     reviews_df = pd.DataFrame()
@@ -62,6 +59,29 @@ if __name__ == "__main__":
     reviews_df['prediction'] = compute_scores(result)
     accuracy = compute_accuracy(result, reviews_df)
 
-    display_data(reviews_df ,accuracy)
+
+    display_data(reviews_df, accuracy, name,output,start)
+
+
+def parse_opt():
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--name', type=str, default='moviescoreai',
+                            help='Choose a name for the html file')
+        parser.add_argument('--output', type=str, default='run',
+                            help='Choose a path for the output file')
+        parser.add_argument('--start', type=bool, default=False, action=argparse.BooleanOptionalAction,
+                            help='open the html file')
+        opt = parser.parse_args()
+        return opt
+
+def main(opt):
+        print(' '.join(f'{k}={v}' for k, v in vars(opt).items()))
+        run(**vars(opt))
+
+if __name__ == "__main__":
+    opt = parse_opt()
+    main(opt)
+
+
 
 

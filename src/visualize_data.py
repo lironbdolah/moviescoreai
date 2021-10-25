@@ -56,7 +56,7 @@ def topmovie(data,summarized_data):
 
     return df.iloc[0]['movies'],df.iloc[0]['image_url'],html_review
 
-def display_data(data, accuracy):
+def display_data(data, accuracy, name, output_path, start):
     scores_mean = data.groupby('movies')['scores'].mean().reset_index()
     predicted_scores_mean = data.groupby('movies')['prediction'].mean().reset_index()
 
@@ -71,7 +71,7 @@ def display_data(data, accuracy):
     movie,image_url,top_review = topmovie(data,summarized_data) # h3 text
     top_movie_data = data.loc[data['movies'] == movie]
     summary_review = review_summary(top_movie_data['reviews'])
-    html(score_summary,movie,image_url,top_review,images_path,summary_review,accuracy) # exports html
+    html(score_summary, movie, image_url, top_review, images_path, summary_review, accuracy, name, output_path, start) # exports html
 
 
 
