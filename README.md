@@ -9,7 +9,8 @@
 
 </p>
 
-This RNN based model predicts movies popularity based on users reviews and scores on Imdb.com and creates an HTML file with relevant statistics. <br />
+This RNN based model predicts movies popularity based on users reviews and scores on Imdb.com and creates an [HTML file](https://github.com/lironbdolah/moviescoreai/blob/main/runs/example/test.html with relevant statistics. <br />
+
 
 
 **Features:**
