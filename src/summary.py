@@ -14,7 +14,7 @@ def summary_score(sentence_tokens,sentences_padded,clean_sentences):
             similarity_matrix[i][j]=1-spatial.distance.cosine(row_embedding,column_embedding)
 
     nx_graph = nx.from_numpy_array(similarity_matrix)
-    scores = nx.pagerank(nx_graph)
+    scores = nx.pagerank(nx_graph,max_iter=600)
 
     top_sentence = {sentence: scores[index] for index, sentence in enumerate(clean_sentences)}
     top = dict(sorted(top_sentence.items(), key=lambda x: x[1], reverse=True)[:4])

@@ -8,7 +8,7 @@ from summary import review_summary
 
 
 def plot_bar(image_path,df):
-    plt.figure(figsize=(13, 7))
+    plt.figure(figsize=(13, 6))
     sns.set_style("whitegrid",{'axes.grid': True})
     bar = sns.barplot(x=df['movies'], y=df['Overall score'], color='gold',order=df.sort_values('Overall score',ascending = False).movies).set_title('Overall Score:')
     x_axis = bar.axes.get_xaxis()
@@ -26,9 +26,9 @@ def plot_bar(image_path,df):
 def scores_summary(summarized_data):
     score_summary = ''
     for index,row in summarized_data.sort_values('Overall score', ascending=False).iterrows():
-        score_summary = score_summary + '\n' + (summarized_data.iloc[index]['movies']) +\
-                         ': &nbsp;&nbsp; Average Score: ' + str(round(summarized_data.iloc[index]['scores'],2)) + ' &nbsp;&nbsp;  Predicted Review Score: ' + \
-                         str(round(summarized_data.iloc[index]['prediction'],2)) + ' <br>'
+        score_summary = score_summary + '\n' + (summarized_data.iloc[index]['movies']) +": <br>"+\
+                         'Overall Score: ' + str(round(summarized_data.iloc[index]['Overall score'],2))+' &nbsp;&nbsp; Average Score: ' + str(round(summarized_data.iloc[index]['scores'],2)) + ' &nbsp;&nbsp;  Predicted Review Score: ' + \
+                         str(round(summarized_data.iloc[index]['prediction'],2)) + ' <br><br>'
 
     return score_summary
 
@@ -37,12 +37,11 @@ def compute_accuracy(result,df):
     score_classes = result.argmax(axis=1)
     correct = 0
     for index,row in df.iterrows():
-        if (row['scores'] > 7 and score_classes[index] == 2) \
-                or (8 > row['scores'] > 3 and score_classes[index] == 1) \
+        if (row['scores'] > 6 and score_classes[index] == 2) \
+                or (7 > row['scores'] > 3 and score_classes[index] == 1) \
                 or (4 > row['scores'] and score_classes[index] == 0):
             correct+=1
     accuracy = round((float(correct)/float(index+1)),2)
-    print(accuracy)
     return accuracy
 
 def topmovie(data,summarized_data):
@@ -65,15 +64,14 @@ def display_data(data, accuracy, name, output_path, start):
     summarized_data = pd.merge(scores_mean, predicted_scores_mean, on="movies")
     summarized_data['Overall score'] = round(((summarized_data['scores'] + summarized_data['prediction']) / 2),2)
 
-    images_path = 'assets'
-    plot_bar(images_path, summarized_data) # barplot image
+    plot_bar(output_path, summarized_data) # barplot image
     score_summary = scores_summary(summarized_data) # p
     movie,image_url,top_review = topmovie(data,summarized_data) # h3 text
     top_movie_data = data.loc[data['movies'] == movie]
     summary_review = review_summary(top_movie_data['reviews'])
-    html(score_summary, movie, image_url, top_review, images_path, summary_review, accuracy, name, output_path, start) # exports html
-
-
+    html(score_summary, movie, image_url, top_review, summary_review, accuracy, name, output_path, start) # exports html
+    print("Finished!")
+    print(name+".html was saved to: " + output_path)
 
 
 

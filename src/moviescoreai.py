@@ -1,10 +1,7 @@
 from extract_from_html import *
-import tensorflow
-from tensorflow import keras
+import tensorflow as tf
 import nltk
 from visualize_data import display_data,compute_accuracy
-from os import path
-from nltk.stem.porter import PorterStemmer
 import pandas as pd
 import argparse
 stopwords = nltk.corpus.stopwords.words('english')
@@ -18,19 +15,12 @@ def clean_reviews(reviews):
         no_digits = [w for w in tokens if
                      not any(n.isdigit() for n in w)]  # remove numbers and words containing numbers
 
-        wnl = nltk.WordNetLemmatizer()
-        lemmatize = [wnl.lemmatize(t) for t in no_digits if t in english_words]
-
-        punctuation = [word for word in lemmatize if word.isalpha()] # remove punctuation
+        punctuation = [word for word in no_digits if word.isalpha()] # remove punctuation
 
         stopwords = nltk.corpus.stopwords.words('english')
         processed = [w for w in punctuation if w.lower() not in stopwords]  # remove stop words
 
-        porter = PorterStemmer()
-        stemmed = [porter.stem(word) for word in processed]
-
-
-        clean_reviews.append(' '.join([s for s in stemmed if len(s) > 2]))  # removes words shorter then 2
+        clean_reviews.append(' '.join([s for s in processed if len(s) > 2 ]))  # removes words shorter then 2
     return clean_reviews
 
 def compute_scores(result):
@@ -43,9 +33,11 @@ def compute_scores(result):
 
 def run(name='moviescoreai',output='run',
                     start=False):
-    dataset_path = 'src'
-    model = tensorflow.saved_model.load(path.join(dataset_path, "weights"))
-    print(model.summary())
+    model = tf.keras.models.load_model("src/weights")
+
+    print()
+    print("This week movies are:")
+    print()
 
     reviews_df = pd.DataFrame()
     url = 'https://www.imdb.com/movies-in-theaters/?ref_=nv_mv_inth'
@@ -67,9 +59,9 @@ def parse_opt():
         parser = argparse.ArgumentParser()
         parser.add_argument('--name', type=str, default='moviescoreai',
                             help='Choose a name for the html file')
-        parser.add_argument('--output', type=str, default='run',
+        parser.add_argument('--output', type=str, default='runs',
                             help='Choose a path for the output file')
-        parser.add_argument('--start', type=bool, default=False, action=argparse.BooleanOptionalAction,
+        parser.add_argument('--start', type=bool, default=False,
                             help='open the html file')
         opt = parser.parse_args()
         return opt
