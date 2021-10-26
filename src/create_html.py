@@ -120,5 +120,5 @@ def html(movies_summary,movie,image_url,top_review, summary_review, accuracy, na
                         </html>''')
         file.close()
     if start:
-        system("start " + path.join(output_path, 'moviescoreai.html'))
+        system("start " + path.join(output_path,  name+".html"))
 
