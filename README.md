@@ -20,6 +20,7 @@ This RNN based model predicts movies popularity based on users reviews and score
 - Exports an HTML file with statistics about recently published movies.
 - Generates a review for the top movie of the week.
 - Updates weekly according to [Imdb: movies in theaters](https://www.imdb.com/movies-in-theaters/?ref_=nv_mv_inth).
+- Can be applied on custom movie lists 
 
 
 ## Requierments:
