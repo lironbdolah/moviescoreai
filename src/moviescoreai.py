@@ -36,9 +36,9 @@ def run(name='moviescoreai',output='run',
     model = tf.keras.models.load_model("src/weights")
 
     print()
-    print("This week movies are:")
+    print("The movies are:")
     print()
-    
+
     reviews_df = pd.DataFrame()
     reviews_url_list, movies_names, images = extract_movies_url(movies_url)
     reviews_df['reviews'], reviews_df['movies'], reviews_df['scores'] = extract_reviews(reviews_url_list, movies_names)
