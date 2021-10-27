@@ -43,9 +43,13 @@ Here's an example for summarizing a [custom made_list on Imdb:](https://www.imdb
 python src/moviescoreai.py --name example  --output runs/example --start True
 --movies-url https://www.imdb.com/list/ls089653199/?ref_=otl_3
 ```
+<p align="center">
+  <img src="assets/movies_cmd.png" />
+</p>
+
 That's it!
 After running this command, the html file will be saved to the output path.
-[Example_result:](http://htmlpreview.github.io/?https://github.com/lironbdolah/moviescoreai/blob/main/runs/test.html)
+[Example_result:](http://htmlpreview.github.io/?https://github.com/lironbdolah/moviescoreai/blob/main/runs/example/example.html)
 
 
 
