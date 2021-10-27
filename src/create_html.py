@@ -66,7 +66,7 @@ def html(movies_summary,movie,image_url,top_review, summary_review, accuracy, na
                                         
                                         .center {
                                           margin: auto;
-                                          width: 20%;
+                                          width: 50%;
                                           text-align: center;
                                         }
                                         
@@ -77,13 +77,15 @@ def html(movies_summary,movie,image_url,top_review, summary_review, accuracy, na
                                           font-size: 1.2vw;
                                           display: flex;
                                           }
-                        
+                                        .underline {
+                                           text-decoration: underline;
+                                          }
                             </style>
                           </head>
                           <body>
                             <div class="body">
                                 <div class="center">
-                                              <h1>moviescoreai</h1><br>
+                                              <h1><span class="underline">moviescoreai</span></h1><br>
                                               <h2>Highest ranked movie:</h2>
                                               <h3>''' + movie + '''</h3>
                                 </div>
