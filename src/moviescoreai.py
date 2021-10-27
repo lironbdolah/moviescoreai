@@ -32,16 +32,15 @@ def compute_scores(result):
     return result.sum(axis=1)
 
 def run(name='moviescoreai',output='run',
-                    start=False):
+                    start=False, movies_url = "https://www.imdb.com/movies-in-theaters/?ref_=nv_mv_inth"):
     model = tf.keras.models.load_model("src/weights")
 
     print()
     print("This week movies are:")
     print()
-
+    
     reviews_df = pd.DataFrame()
-    url = 'https://www.imdb.com/movies-in-theaters/?ref_=nv_mv_inth'
-    reviews_url_list, movies_names, images = extract_movies_url(url)
+    reviews_url_list, movies_names, images = extract_movies_url(movies_url)
     reviews_df['reviews'], reviews_df['movies'], reviews_df['scores'] = extract_reviews(reviews_url_list, movies_names)
     reviews_df = add_images(reviews_df, images, movies_names)
     reviews = reviews_df['reviews'].tolist()
@@ -63,6 +62,8 @@ def parse_opt():
                             help='Choose a path for the output file')
         parser.add_argument('--start', type=bool, default=False,
                             help='open the html file')
+        parser.add_argument('--movies-url', type=str, default='https://www.imdb.com/movies-in-theaters/?ref_=nv_mv_inth',
+                            help='Url of the movies list')
         opt = parser.parse_args()
         return opt
 

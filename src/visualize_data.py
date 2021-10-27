@@ -11,6 +11,11 @@ def plot_bar(image_path,df):
     plt.figure(figsize=(13, 6))
     sns.set_style("whitegrid",{'axes.grid': True})
     bar = sns.barplot(x=df['movies'], y=df['Overall score'], color='gold',order=df.sort_values('Overall score',ascending = False).movies).set_title('Overall Score:')
+    plt.xticks(
+        rotation=40,
+        horizontalalignment='right'
+
+    )
     x_axis = bar.axes.get_xaxis()
     y_axis = bar.axes.get_yaxis()
     x_label = x_axis.get_label()
@@ -18,9 +23,8 @@ def plot_bar(image_path,df):
     x_label.set_visible(False)
     y_label.set_visible(False)
     plt.box(False)
-    plt.savefig(path.join(image_path,'barplot.png'),transparent=True)
-    plt.xticks(plt.xticks()[0], df['movies'], rotation=40)
     plt.tight_layout()
+    plt.savefig(path.join(image_path,'barplot.png'),transparent=True,dpi=300, bbox_inches = "tight")
     plt.close()
 
 def scores_summary(summarized_data):
@@ -51,7 +55,7 @@ def topmovie(data,summarized_data):
     html_review = ''
     for line in top_review.splitlines():
         html_review =html_review + line +' <br>'
-
+    html_review = html_review.replace("0/10","10/10")
 
     return df.iloc[0]['movies'],df.iloc[0]['image_url'],html_review
 
