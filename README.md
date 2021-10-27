@@ -31,5 +31,6 @@ This RNN based model predicts movies popularity based on users reviews and score
 Run this command to get the summary in an HTML file:
 
 ```shell
-python src/moviescoreai.py --name <name for the HTML file>  --output <output path> --start <Optional, if you want to file to open by defult >
+python src/moviescoreai.py --name <name for the HTML file>  --output <output path> --start <Optional, if you want to file to open by defult>
+--movies-url <url for your movies list >
 ```
