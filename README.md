@@ -31,5 +31,21 @@ This RNN based model predicts movies popularity based on users reviews and score
 Run this command to get the summary in an HTML file:
 
 ```shell
-python src/moviescoreai.py --name <name for the HTML file>  --output <output path> --start <Optional, if you want to file to open by defult >
+python src/moviescoreai.py --name <name for the HTML file>  --output <output path> --start <Optional, if you want to file to open by defult>
+--movies-url <url for your movies list >
 ```
+
+## Example:
+
+Here's an example for summarizing a [custom made_list on Imdb:](https://www.imdb.com/list/ls089653199/?ref_=otl_3)
+
+```shell
+python src/moviescoreai.py --name example  --output runs/example --start True
+--movies-url https://www.imdb.com/list/ls089653199/?ref_=otl_3
+```
+That's it!
+After running this command, the html file will be saved to the output path.
+[Example_result:](http://htmlpreview.github.io/?https://github.com/lironbdolah/moviescoreai/blob/main/runs/test.html)
+
+
+
